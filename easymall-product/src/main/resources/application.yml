@@ -1,0 +1,76 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://#:3306/gulimall_pms
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 50000
+  cloud:
+    nacos:
+      discovery:
+        server-addr:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+
+  zipkin:
+    base-url: http://localhost:9411
+    sender:
+      type: web
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1
+
+  thymeleaf:
+    cache: false
+  redis:
+    host: localhost
+    port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+  session:
+    store-type: redis
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+server:
+  port: 10002
+  servlet:
+    session:
+      timeout: 30m
+
+logging:
+  level:
+    com.moudle.pms: error
+
+gulimall:
+  thread:
+    corePoolSize: 10
+    maxPoolSize: 20
+    keepAliveTime: 300
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+feign:
+  sentinel:
+    enabled: true
+
+
+

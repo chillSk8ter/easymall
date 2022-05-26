@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moudle.pms.mapper.PmsCategoryBrandRelationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moudle.pms.model.PmsCategoryBrandRelation">
+        <id column="id" property="id"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="catelog_id" property="catelogId"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="catelog_name" property="catelogName"/>
+    </resultMap>
+
+    <update id="updateBrand">
+        update pms_category_brand_relation cbr set cbr.brand_name =#{name} where cbr.brand_id =#{brandId}
+    </update>
+
+    <update id="updateCate">
+        update     pms_category_brand_relation cbr set cbr.catelog_name =#{name} where cbr.catelog_id=#{catId}
+    </update>
+
+</mapper>

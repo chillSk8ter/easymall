@@ -1,0 +1,15 @@
+package com.easymal.easymallware.feign;
+
+import easymall.easymallcommon.utils.R;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@FeignClient("easy-product")
+public interface ProductFeignService {
+
+    @RequestMapping("/product/skuinfo/info/{skuId}")
+    R info(@PathVariable("skuId") Long skuId);
+
+
+}

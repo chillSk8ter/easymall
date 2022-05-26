@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product_route
+            uri: lb://easymall-product
+            predicates:
+              - Path=/api/product/**
+            filters:
+              - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: member_route
+            uri: lb://easymall-member
+            predicates:
+              - Path=/api/member/**
+            filters:
+              - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+
+        - id: admin_route
+            uri: lb://renren-fast
+            predicates:
+              - Path=/api/**
+            filters:
+              - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
